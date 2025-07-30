@@ -192,7 +192,7 @@ func (lm *Size) More(conn *sql.Conn) bool {
 				log.Printf("Error running SHOW FULL TABLES: %s", err)
 				return false
 			}
-			rows.Close()
+			defer rows.Close()
 			for rows.Next() {
 				var name, base string
 				err = rows.Scan(&name, &base)
